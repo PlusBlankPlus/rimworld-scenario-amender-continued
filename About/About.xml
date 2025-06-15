@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-  <name>Scenario Amender [1.5]</name>
+  <name>Scenario Amender [1.5 - 1.6]</name>
   <author>katana</author>
   <packageId>katana.scenarioamender</packageId>
   <description>
 
-[h1]Scenario Amender 1.5[/h1]
+[h1]Scenario Amender 1.5 - 1.6[/h1]
 
 [strike]PASSED DOWN THE ARMSTRONG LINE FOR GENERATIONS[/strike]
 
@@ -52,6 +52,7 @@ Click [i]Edit[/i], make your changes, and click [i]Save[/i]. Done.
   </description>
   <supportedVersions>
     <li>1.5</li>
+    <li>1.6</li>
   </supportedVersions>
   <modDependencies>
     <li>
