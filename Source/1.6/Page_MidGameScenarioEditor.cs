@@ -44,9 +44,20 @@ namespace ScenarioAmender
                 }
                 else if ((!(allPart is ScenPart_GameStartDialog) || Find.GameInitData != null) && !(allPart is ScenPart_ConfigPage_ConfigureStartingPawns))
                 {
-                    allPart.PostGameStart();
-                    allPart.PostWorldGenerate();
-                    allPart.GenerateIntoMap(Find.CurrentMap);
+                    try
+                    {
+                        allPart.PostGameStart();
+                        if (Find.GameInitData != null)
+                        {
+                            allPart.PostWorldGenerate();
+                        }
+
+                        allPart.GenerateIntoMap(Find.CurrentMap);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Warning($"[ScenarioAmender] Failed to initialize scenario part {allPart.def?.defName}: {ex}");
+                    }
                 }
             }
             Close();
