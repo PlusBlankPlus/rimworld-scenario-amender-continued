@@ -36,6 +36,7 @@ namespace ScenarioAmender
             (typeof(GameRules).GetField("disallowedDesignatorTypes", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(Current.Game.Rules) as HashSet<Type>)?.Clear();
             (typeof(GameRules).GetField("disallowedBuildings", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(Current.Game.Rules) as HashSet<ThingDef>)?.Clear();
             Current.Game.Scenario = base.EditingScenario;
+
             foreach (ScenPart allPart in Current.Game.Scenario.AllParts)
             {
                 if (allPart is ScenPart_PlayerFaction)
@@ -60,6 +61,21 @@ namespace ScenarioAmender
                     }
                 }
             }
+            try
+            {
+                foreach (StatDef statDef in DefDatabase<StatDef>.AllDefs)
+                {
+                    if (statDef.Worker != null)
+                    {
+                        statDef.Worker.TryClearCache(); // Оставляем только его!
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"[ScenarioAmender] Failed to clear game stat cache: {ex}");
+            }
+
             Close();
         }
 
